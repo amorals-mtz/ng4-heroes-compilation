@@ -1,0 +1,30 @@
+<h2>My Heroes</h2>
+<div>
+  <label>Hero name:</label> <input #heroName />
+  <!-- Call the component's click handler and then clear the input field so that it's ready for another name. -->
+  <button (click)="add(heroName.value); heroName.value=''">Add</button>
+</div>
+<ul class="heroes">
+  <!-- The 'ngFor' directive iterates over an array list and renders an instance of this template for each item in that array. -->
+  <!-- The (*) prefix is a critical part of this syntax. It indicates that the <li> element and its children constitute a master template. -->
+  <li *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
+    <!-- Each item goes here... -->
+    <span class="badge">{{hero.id}}</span>
+    <span>{{hero.name}}</span>
+    <!-- Stops the propagation of the click event — you don't want the <li> click handler to be triggered. -->
+    <button (click)="delete(hero); $event.stopPropagation()" class="delete">x</button>
+  </li>
+</ul>
+<!-- Binding a parent component to a child component. -->
+<!-- <hero-detail [hero]="selectedHero"></hero-detail> -->
+
+<!-- The 'ngIf' directive puts/removes the HTML content into/from the DOM. -->
+<div *ngIf="selectedHero">
+  <h2>
+    <!-- Display the `name` in capital letters because of the uppercase pipe. -->
+    {{selectedHero.name | uppercase}} is my hero!
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>

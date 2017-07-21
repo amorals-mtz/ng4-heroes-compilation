@@ -1,0 +1,13 @@
+<div id="search-component">
+  <h4>Hero Search</h4>
+  <!-- As the user types in the search box, a keyup event binding calls a method with the new search box value. -->
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+  <div>
+    <!-- '*ngFor' repeats objects ('hero') from the component's list property ('heroes'). -->
+    <!-- But this time, the list property is now an Observable of 'object' arrays, rather than just an 'object' array. The *ngFor can't do anything with an Observable until you route it through the async pipe (AsyncPipe). The async pipe subscribes to the Observable and produces the array of 'objects to *ngFor. -->
+    <div *ngFor="let hero of heroes | async"
+         (click)="gotoDetail(hero)" class="search-result" >
+      {{hero.name}}
+    </div>
+  </div>
+</div>
