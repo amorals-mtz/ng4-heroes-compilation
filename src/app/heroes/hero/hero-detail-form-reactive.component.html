@@ -1,0 +1,58 @@
+<!-- The 'ngIf' directive puts/removes the HTML content into/from the DOM. -->
+<div class="container" *ngIf="hero">
+  <div [hidden]="submitted">
+    <h2>{{ hero.name }} details...! (Reactive)</h2>
+
+    <!-- Declare a template variable for the form, and reference to the NgForm directive
+    that governs the form as a whole. -->
+    <!-- Bind the form's `ngSubmit` event property to the form component's onSubmit() method. -->
+    <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label>id: </label>{{ hero.id }}
+      </div>
+
+      <div class="form-group">
+        <label for="name">Name: </label>
+        <!-- The validation attributes are gone (except required) because validating happens in code. -->
+        <!-- `required` remains, not for validation purposes (that's in the code),
+        but rather for css styling and accessibility. -->
+        <!-- The `formControlName` replaces the name attribute; it serves the same purpose
+        of correlating the input with the Angular form control. -->
+        <input type="text" id="name" class="form-control" placeholder="name"
+               formControlName="name" required>
+
+        <!-- VALIDATION MESSAGES -->
+        <div *ngIf="formErrors.name" class="alert alert-danger">
+          {{ formErrors.name }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="alterEgo">Alter Ego</label>
+        <input type="text" id="alterEgo" class="form-control"
+               formControlName="alterEgo">
+      </div>
+
+      <div class="form-group">
+        <label for="power">Hero Power</label>
+        <select id="power" class="form-control"
+                formControlName="power" required>
+          <option *ngFor="let p of powers" [value]="p">{{p}}</option>
+        </select>
+        <div *ngIf="formErrors.power" class="alert alert-danger">
+          {{ formErrors.power }}
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+      <!-- Bind the form's overall validity via the heroForm variable to the button's disabled property. -->
+      <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" class="btn btn-default" (click)="addHero()">New Hero</button>
+    </form>
+  </div>
+
+  <!-- Displayed read-only with interpolation bindings. -->
+  <hero-submitted [hero]="hero" [(submitted)]="submitted"></hero-submitted>
+</div>

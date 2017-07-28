@@ -12,7 +12,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { Hero }               from '../shared/hero.model';
+import { Hero }               from '../shared/models/hero.model';
 import { HeroSearchService }  from '../shared/hero-search.service';
 
 @Component({
@@ -22,6 +22,7 @@ import { HeroSearchService }  from '../shared/hero-search.service';
   providers: [ HeroSearchService ]
 })
 export class HeroSearchComponent implements OnInit {
+
   heroes: Observable<Hero[]>;
   private searchTerms = new Subject<string>();    // A Subject is a producer of an observable event stream;
 
