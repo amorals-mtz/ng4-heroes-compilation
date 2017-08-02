@@ -5,7 +5,7 @@ import { HeroMockService }  from '../heroes/shared/hero-mock.service';
 import { HeroHttpService }  from '../heroes/shared/hero-http.service';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'hero-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: [ './dashboard.component.scss' ]
 })

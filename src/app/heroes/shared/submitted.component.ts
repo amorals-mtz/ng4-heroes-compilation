@@ -12,7 +12,7 @@ import { HeroHttpService }  from '../shared/hero-http.service';
     <h2>You submitted the following:</h2>
     <div class="row">
       <div class="col-xs-3">Name</div>
-      <div class="col-xs-9  pull-left">{{ hero.name }}</div>
+      <div class="col-xs-9 pull-left">{{ hero.name }}</div>
     </div>
     <div class="row">
       <div class="col-xs-3">Alter Ego</div>

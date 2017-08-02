@@ -1,0 +1,41 @@
+<h4>Little Tour of Heroes (...just for learning)!</h4>
+<p><i>Add a new hero</i></p>
+<div>
+  <input #heroInput
+    (keyup)="0"
+    (keyup.enter)="addHero(heroInput.value); heroInput.value='' "
+    (blur)="addHero(heroInput.value); heroInput.value='' ">
+
+  <!-- The (click) identifies the button's click event as the target of the binding. -->
+  <!-- The text in quotes is the template statement, which responds to the click event. -->
+  <button type="button" (click)="addHero(heroInput.value)">Add</button>
+  <button type="button" (click)="onClick($event)">No! .. Click me!</button>
+  <ul>
+    <li *ngFor="let hero of heroes">{{hero}}</li>
+  </ul>
+</div>
+
+<h4>Give me some keys!</h4>
+<div>
+  <key-up-v1></key-up-v1>
+</div>
+
+<h4>Keyup loop-back component</h4>
+<div>
+  <loop-back></loop-back>
+</div>
+
+<h4>Give me some more keys!</h4>
+<div>
+  <key-up-v2></key-up-v2>
+</div>
+
+<h4>Type away! Press [enter] when done.</h4>
+<div>
+  <key-up-v3></key-up-v3>
+</div>
+
+<h4>Type away! Press [enter] or click elsewhere when done.</h4>
+<div>
+  <key-up-v4></key-up-v4>
+</div>

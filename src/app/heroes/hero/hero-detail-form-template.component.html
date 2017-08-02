@@ -3,9 +3,10 @@
   <div [hidden]="submitted">
     <h2>{{ hero.name }} details...! (Template-Driven)</h2>
 
-    <!-- Declare a template variable for the form, and reference to the NgForm directive
+    <!-- Declare a template variable for the form (#heroForm), and reference to the NgForm directive
     that governs the form as a whole. -->
-    <!-- Bind the form's `ngSubmit` event property to the form component's onSubmit() method. -->
+    <!-- Handle form submission binding the form's `ngSubmit` event property to the
+    form component's onSubmit() method. -->
     <form #heroForm="ngForm" (ngSubmit)="onSubmit()">
 
       <div class="form-group">
@@ -15,9 +16,10 @@
       {{ diagnostic }}
       <div class="form-group">
         <label for="name">Name: </label>
+
         <!-- Defining a `name` attribute is a requirement when using [(ngModel)] in combination with a form. -->
-        <!-- The built-in '[(ngModel)]' directive allows two-way data binding between
-        the input box and hero.name property. -->
+        <!-- The built-in '[(ngModel)]' directive allows two-way data binding between the input box and
+        hero.name property. -->
         <!-- The template variable (#name) has the value "ngModel" (always ngModel).
         This gives you a reference to the Angular NgModel directive associated with this control
         that you can use in the template to check for control states such as valid and dirty. -->
@@ -63,8 +65,9 @@
                name="alterEgo" [(ngModel)]="hero.alterEgo"
                (ngModelChange)="hero.alterEgo = $event"
                #spy>
-        <!-- Track values of Template variables.  -->
+        <!-- Add Template reference variables to track values of...  -->
         <br>TODO: remove this: {{ hero.alterEgo }}
+        <!-- ... input's CSS classes. -->
         <br>TODO: remove this: {{ spy.className }}
       </div>
 
@@ -92,10 +95,12 @@
       </div>
 
       <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
-      <!-- Bind the form's overall validity via the heroForm variable to the button's disabled property. -->
+
+      <!-- Bind the form's overall validity via the heroForm template variable to the button's disabled property. -->
       <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
 
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <!-- Reset both the form and its control flags imperatively. -->
       <button type="button" class="btn btn-default" (click)="addHero(); heroForm.reset()">New Hero</button>
       <i>with</i> reset
       &nbsp;&nbsp;

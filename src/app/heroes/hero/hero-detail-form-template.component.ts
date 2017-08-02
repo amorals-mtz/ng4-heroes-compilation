@@ -1,6 +1,7 @@
 /**
  * This component includes a form to maintain personal information about heroes.
  */
+
 import { Component, OnInit, AfterViewChecked, ViewChild } from '@angular/core';
 import { Location }                from '@angular/common';
 import { NgForm }                  from '@angular/forms';
@@ -15,7 +16,7 @@ import { HeroHttpService }  from '../shared/hero-http.service';
 @Component ({
   selector: 'hero-detail-form-template',
   templateUrl: './hero-detail-form-template.component.html',
-  /** styleUrls: [ './hero-detail.component.scss' ] */
+  styleUrls: [ './hero-detail.component.scss' ]
 })
 export class HeroDetailFormTemplateComponent implements OnInit, AfterViewChecked {
 
@@ -24,6 +25,7 @@ export class HeroDetailFormTemplateComponent implements OnInit, AfterViewChecked
   submitted = false;
 
   heroForm: NgForm;
+  // Inject a template variable by passing the name of that variable as a string.
   @ViewChild('heroForm') currentForm: NgForm;
 
   formErrors = {
@@ -75,6 +77,10 @@ export class HeroDetailFormTemplateComponent implements OnInit, AfterViewChecked
     this.formChanged();
   }
 
+  /**
+   * When there is a new `heroForm` model, this method subscribes
+   * to its valueChanges Observable property.
+   */
   formChanged() {
     if (this.currentForm === this.heroForm) { return; }
     this.heroForm = this.currentForm;
@@ -86,6 +92,7 @@ export class HeroDetailFormTemplateComponent implements OnInit, AfterViewChecked
 
   /**
    * Handler that looks for validation errors after every keystroke.
+   * The `data` object passed contains the current element values.
    */
   onValueChanged(data?: any) {
     if (!this.heroForm) { return; }
@@ -124,7 +131,7 @@ export class HeroDetailFormTemplateComponent implements OnInit, AfterViewChecked
   }
 
   /**
-   * `diagnostic` property to return a JSON representation of the model.
+   * This property returns a JSON representation of the model.
    * TODO: Remove this when we're done.
    */
   get diagnostic() {

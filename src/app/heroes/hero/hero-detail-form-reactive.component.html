@@ -3,8 +3,8 @@
   <div [hidden]="submitted">
     <h2>{{ hero.name }} details...! (Reactive)</h2>
 
-    <!-- Declare a template variable for the form, and reference to the NgForm directive
-    that governs the form as a whole. -->
+    <!-- Use and bind the Angular formGroup directive in the template to the `heroForm` property
+    in the component class. The `heroForm` is the control model that the component class builds and maintains. -->
     <!-- Bind the form's `ngSubmit` event property to the form component's onSubmit() method. -->
     <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
 
@@ -14,11 +14,14 @@
 
       <div class="form-group">
         <label for="name">Name: </label>
+
+        <!-- The `formControlName` replaces the `name` attribute; it serves the same purpose
+        of correlating the input with the Angular form control. -->
+        <!-- The reactive approach does not use two-way [(ngModel)] data binding to move data
+        into and out of the form controls. -->
         <!-- The validation attributes are gone (except required) because validating happens in code. -->
         <!-- `required` remains, not for validation purposes (that's in the code),
         but rather for css styling and accessibility. -->
-        <!-- The `formControlName` replaces the name attribute; it serves the same purpose
-        of correlating the input with the Angular form control. -->
         <input type="text" id="name" class="form-control" placeholder="name"
                formControlName="name" required>
 

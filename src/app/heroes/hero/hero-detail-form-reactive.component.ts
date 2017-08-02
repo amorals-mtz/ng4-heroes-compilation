@@ -8,7 +8,7 @@ import { ActivatedRoute, Params }  from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
 
-import { Hero }                    from '../shared/models/hero.model';
+import { Hero }             from '../shared/models/hero.model';
 import { HeroMockService }         from '../shared/hero-mock.service';
 import { HeroHttpService }         from '../shared/hero-http.service';
 import { forbiddenNameValidator }  from '../shared/forbidden-name.directive';
@@ -60,21 +60,29 @@ export class HeroDetailFormReactiveComponent implements OnInit {
     this.route.params
         // If a user re-navigates to this component while a getHero request is still processing,
         // switchMap cancels the old request and then calls HeroService.getHero() again.
-        //
+
         // The item id is a number. Route parameters are always strings. So the route parameter value is converted
         // to a number with the JavaScript (+) operator.
-        /** .switchMap((params: Params) => this.heroMockService.getHero(+params['id'])) */
         .switchMap((params: Params) => this.heroHttpService.getHero(+params['id']))
-        .subscribe(hero => this.hero = hero);
-
-    this.buildForm();
+        /** .switchMap((params: Params) => this.heroMockService.getHero(+params['id'])) */
+        .subscribe(hero => {
+          this.hero = hero;
+          this.buildForm();    // Call the `buildForm` method here because that's when you'll have the hero data.
+         });
   }
 
   /**
    * Create the Angular form control model explicitly with the help of the FormBuilder class.
    */
   buildForm() {
-    // declare the form control model
+    // When using Reactive Forms the component class is now responsible for defining and managing
+    // the form control model.
+
+    // Angular no longer derives the control model from the template so you can no longer query for it.
+    // Declare the form control model explicitly with the help of the FormBuilder class.
+    // Each control spec is a control name with an array value. The first array element is
+    // the current value of the corresponding hero field. The optional second value is a validator function
+    // or an array of validator functions.
     this.heroForm = this.fb.group({
       'name': [this.hero.name, [
           // include built-in validators
@@ -117,6 +125,11 @@ export class HeroDetailFormReactiveComponent implements OnInit {
     }
   }
 
+  /**
+   * Reactive Forms component should not use data binding to automatically update
+   * data model properties. The developer decides when and how to update the data model
+   * from control values.
+   */
   onSubmit() {
     this.submitted = true;
     // replace the hero object with the combined values of the form:

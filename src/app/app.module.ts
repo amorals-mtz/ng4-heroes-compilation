@@ -38,7 +38,7 @@ import { HeroHttpService }      from './heroes/shared/hero-http.service';
   // pipes, and directives that belong to the module.
   providers: [
     HeroMockService,
-    HeroHttpService
+    HeroHttpService,
   ],
   bootstrap: [ AppComponent ]
 })

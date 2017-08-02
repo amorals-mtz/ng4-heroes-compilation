@@ -12,6 +12,7 @@ import { Component }  from '@angular/core';
       <!-- The 'routerLinkActive' directive adds a class to the HTML navigation element whose route matches the active route. -->
       <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+      <a routerLink="/fundamentals" routerLinkActive="active">Basics</a>
     </nav>
     <!-- The router will display the components immediately below the <router-outlet> as users navigate through the app. -->
     <router-outlet></router-outlet>
