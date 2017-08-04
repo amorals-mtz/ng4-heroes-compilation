@@ -3,7 +3,19 @@ import { Component }  from '@angular/core';
 @Component({
   selector: 'root-app',
 
-  // Multi-line template using ES2015's template literals.
+  /* Typical link
+    <a [routerLink]="['/heroes']">Heroes</a>
+  */
+  /* Crisis Center link when CC lacks a default
+    <a [routerLink]="['/crisis-center/']">Crisis Center</a>
+  */
+  /* Crisis Center Detail link
+    <a [routerLink]="['/crisis-center', 1]">Dragon Crisis</a>
+  */
+  /* Crisis Center link with optional query params
+    <a [routerLink]="['/crisis-center', { foo: 'foo' }]">Crisis Center</a>
+  */
+   // Multi-line template using ES2015's template literals.
   template: `
     <h1>{{title}}</h1>
     <!-- The <nav> tags don't do anything yet, but they're helpful for styling the links. -->
@@ -12,11 +24,11 @@ import { Component }  from '@angular/core';
       where to navigate when the user clicks the link. -->
       <!-- The 'RouterLinkActive' directive adds the 'active' CSS class
       to the HTML navigation element whose route matches the active route. -->
-      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-      <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a>
-      <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+      <a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
+      <a [routerLink]="['/crisis-center']" routerLinkActive="active">Crisis Center</a>
+      <a [routerLink]="['/heroes']" routerLinkActive="active">Heroes</a>
     </nav>
-    <!-- The router will display the components immediately below the RouterOutlet as users navigate through the app. -->
+    <!-- The router will display the components immediately below the 'RouterOutlet' as users navigate through the app. -->
     <router-outlet></router-outlet>
   `,
   // The 'templateUrl' property replace the 'template' metadata and point to a new template file.

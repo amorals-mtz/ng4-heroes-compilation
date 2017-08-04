@@ -7,12 +7,11 @@
 <ul class="heroes">
   <!-- The 'ngFor' directive iterates over an array list and renders an instance of this template for each item in that array. -->
   <!-- The (*) prefix is a critical part of this syntax. It indicates that the <li> element and its children constitute a master template. -->
-  <li *ngFor="let hero of heroes"
-    [class.selected]="hero === selectedHero"
+  <li *ngFor="let hero of heroes | async"
+    [class.selected]="isSelected(hero)"
     (click)="onSelect(hero)">
     <!-- Each item goes here... -->
-    <span class="hero-badge">{{ hero.id }}</span>
-    <span>{{ hero.name }}</span>
+    <span class="hero-badge">{{ hero.id }}</span> {{ hero.name }}
     <!-- Stops the propagation of the click event — you don't want the <li> click handler to be triggered. -->
     <button type="button"
       (click)="delete(hero); $event.stopPropagation()"

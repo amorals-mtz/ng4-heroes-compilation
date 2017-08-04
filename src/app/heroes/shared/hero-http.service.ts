@@ -17,14 +17,14 @@ export class HeroHttpService {
    */
   constructor(private http: Http) { }
 
-  getHeroes(): Promise<Hero[]> {
+  getHeroes()/*: Promise<Hero[]> */{
     return this.http.get(this.heroesUrl)                          // 'http.get' returns an RxJS Observable
                .toPromise()                                       // converte the Observable to a Promise
                .then(response => response.json().data as Hero[])  // extract the data within the response
                .catch(this.handleError);                          // catch server failures and pass them to an error handler
   }
 
-  getHero(id: number): Promise<Hero> {
+  getHero(id: number)/*: Promise<Hero> */{
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get(url)
                .toPromise()
@@ -32,7 +32,7 @@ export class HeroHttpService {
                .catch(this.handleError);
   }
 
-  create(name: string): Promise<Hero> {
+  create(name: string)/*: Promise<Hero> */{
     return this.http
                .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
                .toPromise()
@@ -40,7 +40,7 @@ export class HeroHttpService {
                .catch(this.handleError);
   }
 
-  update(hero: Hero): Promise<Hero> {
+  update(hero: Hero)/*: Promise<Hero> */{
     const url = `${this.heroesUrl}/${hero.id}`;
     return this.http
                .put(url, JSON.stringify(hero), {headers: this.headers})
@@ -49,7 +49,7 @@ export class HeroHttpService {
                .catch(this.handleError);
   }
 
-  delete(id: number): Promise<void> {
+  delete(id: number)/*: Promise<void> */{
     const url = `${this.heroesUrl}/${id}`;
     return this.http.delete(url, {headers: this.headers})
                .toPromise()

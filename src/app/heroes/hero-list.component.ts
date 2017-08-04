@@ -1,54 +1,61 @@
 import { Component, OnInit }  from '@angular/core';
-import { Router }             from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
+// rxjs-imports
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
 
 import { Hero }             from './shared/models/hero.model';
 import { HeroMockService }  from './shared/hero-mock.service';
 import { HeroHttpService }  from './shared/hero-http.service';
 
 @Component({
-  selector: 'app-heroes',
   templateUrl: './hero-list.component.html',
   styleUrls: [ './hero-list.component.scss' ]
 })
 export class HeroListComponent implements OnInit {
-  // hero = 'Windstorm';
 
-  // Refactor the component's hero property to be of type Hero
-  // hero: Hero = {
-  //   id: 1,
-  //   name: 'Windstorm'
-  // }
+  /*heroes: Promise<Hero[]>; */
+  heroes: Observable<Hero[]>;
 
-  // The heroes type isn't defined because TypeScript infers it from the HEROES array.
-  heroes: Hero[];
-
+  selectedId: number = null;
   selectedHero: Hero;
 
   /**
    * Constructor.
    */
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
-    /** private heroMockService: HeroMockService */
-    private heroHttpService: HeroHttpService
+    /*private service: HeroMockService */
+    private service: HeroHttpService
   ) { }
 
   ngOnInit() {
-    this.getHeroes();
+    // Check if any optional route parameters are included.
+    this.heroes = this.route.paramMap
+        .switchMap((params: ParamMap) => {
+            // (+) before `params.get()` turns the string into a number
+            this.selectedId = +params.get('id');
+            return this.getHeroes();
+        });
   }
 
   getHeroes() {
-    // Call the Synchronous method to get the list of mock heroes.
-    /** this.heroes = this.heroMockService.getHeroesSync(); */
+    // Call the Synchronous method HeroMockService.getHeroesSync() to get the list of mock heroes.
+    /*this.heroes = this.service.getHeroesSync(); */
 
-    // Call the Asynchronous method to get the list of mock heroes.
-    /** this.heroMockService.getHeroesAsync()
+    // Call the Asynchronous method HeroMockService.getHeroesAsync() to get the list of mock heroes.
+    /*this.service.getHeroesAsync()
         .then(heroes => this.heroes = heroes); */
 
-    /** this.heroMockService.getHeroesSlowly()
+    /*this.service.getHeroesSlowly()
         .then(heroes => this.heroes = heroes); */
-    this.heroHttpService.getHeroes()
-        .then(heroes => this.heroes = heroes);
+    /*this.service.getHeroes()
+        .then(heroes => this.heroes = heroes); */
+
+    // TODO: Enable this service to work with Observables
+    return this.service.getHeroes();
   }
 
   /**
@@ -58,26 +65,34 @@ export class HeroListComponent implements OnInit {
     name = name.trim();
     if (!name) { return; }  // if given name is non-blank
 
-    this.heroHttpService.create(name)
+    // TODO: Fix the service to add new items
+    /*this.service.create(name)
         .then(hero => {
           this.heroes.push(hero);
           this.selectedHero = null;
-        });
+        }); */
   }
 
   delete(hero: Hero) {
-    this.heroHttpService.delete(hero.id)
+    // TODO: Fix the service to delete items
+    /*this.service.delete(hero.id)
         .then(() => {
           this.heroes = this.heroes.filter(h => h !== hero);
           if (this.selectedHero === hero) { this.selectedHero = null; }
-        });
+        }); */
+  }
+
+  isSelected(hero: Hero) {
+    return hero.id === this.selectedId;
   }
 
   onSelect(hero: Hero) {
+    this.selectedId = hero.id;
     this.selectedHero = hero;
   }
 
   gotoDetail() {
-    this.router.navigate(['/detail', this.selectedHero.id]);
+    // nav-to-detail
+    this.router.navigate(['/hero', this.selectedHero.id]);
   }
 }

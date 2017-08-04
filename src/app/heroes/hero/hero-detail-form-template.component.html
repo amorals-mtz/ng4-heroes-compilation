@@ -96,7 +96,10 @@
       </div>
 
       <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+      <button type="button" class="btn btn-secondary" (click)="gotoHeroes()">Back</button>
+      <i>with</i> optional params
 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <!-- Bind button's disabled property to form's overall validity via the `heroForm` template variable. -->
       <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
 
