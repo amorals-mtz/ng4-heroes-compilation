@@ -7,6 +7,9 @@ import { BrowserAnimationsModule }           from '@angular/platform-browser/ani
 // import { MdButtonModule, MdCheckboxModule, ... }  from '@angular/material';
 
 // layouts
+import { HeroListComponent }    from './hero-list.component';
+import { HeroSearchComponent }  from './hero-search/hero-search.component';
+
 import { FormsFundamentalsComponent }       from './fundamentals/forms-fundamentals.component';
 import { HeroDetailFormTemplateComponent }  from './hero/hero-detail-form-template.component';
 import { HeroDetailFormReactiveComponent }  from './hero/hero-detail-form-reactive.component';
@@ -25,6 +28,9 @@ import { ForbiddenValidatorDirective }      from './shared/forbidden-name.direct
     // MdButtonModule, MdCheckboxModule, …
   ],
   declarations: [
+    HeroListComponent,
+    HeroSearchComponent,
+
     FormsFundamentalsComponent,
     HeroDetailFormTemplateComponent,
     HeroDetailFormReactiveComponent,
@@ -41,4 +47,4 @@ import { ForbiddenValidatorDirective }      from './shared/forbidden-name.direct
     // MdButtonModule, MdCheckboxModule, …
   ]
 })
-export class HeroesDetailModule { }
+export class HeroesModule { }

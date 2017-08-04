@@ -2,6 +2,7 @@
 <div class="container" *ngIf="hero">
   <div [hidden]="submitted">
     <h2>{{ hero.name }} details...! (Template-Driven)</h2>
+    <h2><span [innerHTML]="hero.name"></span> details...! (Template-Driven)</h2>
 
     <!-- Declare a template variable for the form (#heroForm), and reference to the NgForm directive
     that governs the form as a whole. -->
@@ -96,7 +97,7 @@
 
       <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
 
-      <!-- Bind the form's overall validity via the heroForm template variable to the button's disabled property. -->
+      <!-- Bind button's disabled property to form's overall validity via the `heroForm` template variable. -->
       <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
 
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

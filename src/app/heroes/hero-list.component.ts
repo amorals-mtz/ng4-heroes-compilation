@@ -7,10 +7,10 @@ import { HeroHttpService }  from './shared/hero-http.service';
 
 @Component({
   selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: [ './heroes.component.scss' ]
+  templateUrl: './hero-list.component.html',
+  styleUrls: [ './hero-list.component.scss' ]
 })
-export class HeroesComponent implements OnInit {
+export class HeroListComponent implements OnInit {
   // hero = 'Windstorm';
 
   // Refactor the component's hero property to be of type Hero
