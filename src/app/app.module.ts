@@ -9,9 +9,9 @@ import { AppComponent }         from './app.component';
 import { AppRoutingModule }     from './app-routing.module';    // <--- Routing Module
 
 import { HeroesModule }         from './heroes/heroes.module';
+import { CrisisCenterModule }   from './crisis-center/crisis-center.module';
 
 import { DashboardComponent }           from './dashboard/dashboard.component';
-import { CrisisListComponent }          from './crisis-center/crisis-list.component';
 import { FormsFundamentalsComponent }   from './fundamentals/forms-fundamentals.component';
 import { KeyUpv1Component, KeyUpv2Component, KeyUpv3Component, KeyUpv4Component } from './fundamentals/shared/keyup.component';
 import { LoopbackComponent }            from './fundamentals/shared/keyup.component';
@@ -34,6 +34,7 @@ import { InMemoryDataService }  from './core/in-memory-data.service';
     HttpModule,                 // <--- import providers for HTTP services
     BrowserAnimationsModule,
     HeroesModule,
+    CrisisCenterModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),    // <-- simulates communication with a remote server
     AppRoutingModule,           // <--- import your own routing configurations last (ORDER MATTERS)
   ],
@@ -42,7 +43,6 @@ import { InMemoryDataService }  from './core/in-memory-data.service';
   declarations: [
     AppComponent,
     DashboardComponent,
-    CrisisListComponent,
     FormsFundamentalsComponent,
     KeyUpv1Component, KeyUpv2Component, KeyUpv3Component, KeyUpv4Component,
     LoopbackComponent,

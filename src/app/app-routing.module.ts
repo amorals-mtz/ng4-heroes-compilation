@@ -2,14 +2,18 @@ import { NgModule }              from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 
 import { DashboardComponent }          from './dashboard/dashboard.component';
-import { CrisisListComponent }         from './crisis-center/crisis-list.component';
 import { FormsFundamentalsComponent }  from './fundamentals/forms-fundamentals.component';
+import { ComposeMessageComponent }     from './shared/compose-message.component';
 import { PageNotFoundComponent }       from './shared/not-found.component';
 
 // Configure routes to navigate HERE
 const appRoutes: Routes = [
+  {                                                        // <--- Configures a secondary route.
+    path: 'compose',
+    component: ComposeMessageComponent,
+    outlet: 'popup'
+  },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'crisis-center', component: CrisisListComponent },
   { path: 'fundamentals', component: FormsFundamentalsComponent },
   { path: '', redirectTo: '/heroes', pathMatch: 'full' },  // <--- Default route when the app launches with an empty path.
   { path: '**', component: PageNotFoundComponent }         // <--- Configures a wildcard route to intercept any invalid URLs.

@@ -27,9 +27,15 @@ import { Component }  from '@angular/core';
       <a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
       <a [routerLink]="['/crisis-center']" routerLinkActive="active">Crisis Center</a>
       <a [routerLink]="['/heroes']" routerLinkActive="active">Heroes</a>
+      <!-- Specify the named outlet in the link parameters array and bind it to the 'RouterLink'
+      with a property binding. -->
+      <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
     </nav>
     <!-- The router will display the components immediately below the 'RouterOutlet' as users navigate through the app. -->
     <router-outlet></router-outlet>
+    <!-- Because the router only supports one primary unnamed outlet per template. Include a named outlet.
+    Note: A template can also have any number of named outlets.-->
+    <router-outlet name="popup"></router-outlet>
   `,
   // The 'templateUrl' property replace the 'template' metadata and point to a new template file.
   // templateUrl: './app.component.html'
