@@ -5,9 +5,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
-import { Hero }             from './shared/models/hero.model';
-import { HeroMockService }  from './shared/hero-mock.service';
-import { HeroHttpService }  from './shared/hero-http.service';
+import { Hero }                    from './shared/models/hero.model';
+import { HeroMockPromiseService }  from './shared/hero-mock-promised.service';
+import { HeroHttpPromiseService }  from './shared/hero-http-promised.service';
 
 @Component({
   templateUrl: './hero-list.component.html',
@@ -27,8 +27,8 @@ export class HeroListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    /*private service: HeroMockService */
-    private service: HeroHttpService
+    /*private service: HeroMockPromiseService */
+    private service: HeroHttpPromiseService
   ) { }
 
   ngOnInit() {

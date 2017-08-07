@@ -27,7 +27,7 @@ export class HeroSearchComponent implements OnInit {
   private searchTerms = new Subject<string>();    // A Subject is a producer of an observable event stream;
 
   constructor(
-    private heroSearchService: HeroSearchService,
+    private service: HeroSearchService,
     private router: Router
   ) { }
 
@@ -40,7 +40,7 @@ export class HeroSearchComponent implements OnInit {
                                     // while returning only the observable from the most recent http method call.
                                     // Results from prior calls are canceled and discarded
             // return the http search observable
-            ? this.heroSearchService.search(term)
+            ? this.service.search(term)
             // or the observable of empty heroes if there was no search term
             : Observable.of<Hero[]>([]))
           .catch(error => {         // intercept a failed observable

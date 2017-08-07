@@ -1,8 +1,8 @@
 import { Component, OnInit }  from '@angular/core';
 
-import { Hero }             from '../heroes/shared/models/hero.model';
-import { HeroMockService }  from '../heroes/shared/hero-mock.service';
-import { HeroHttpService }  from '../heroes/shared/hero-http.service';
+import { Hero }                    from '../heroes/shared/models/hero.model';
+import { HeroMockPromiseService }  from '../heroes/shared/hero-mock-promised.service';
+import { HeroHttpPromiseService }  from '../heroes/shared/hero-http-promised.service';
 
 @Component({
   selector: 'hero-dashboard',
@@ -25,8 +25,8 @@ export class DashboardComponent implements OnInit {
    * Injects the 'HeroService' service.
    */
   constructor(
-    /** private heroMockService: HeroMockService */
-    private heroHttpService: HeroHttpService
+    /** private heroService: HeroMockPromiseService */
+    private heroService: HeroHttpPromiseService
   ) { }
 
   /**
@@ -35,9 +35,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
     // Call the service to get items.
-    /** this.heroMockService.getHeroesAsync()
+    /** this.heroService.getHeroesAsync()
         .then(heroes => this.heroes = heroes.slice(1, 5)); */
-    this.heroHttpService.getHeroes()
+    this.heroService.getHeroes()
         .then(heroes => this.heroes = heroes.slice(1, 5));
   }
 }

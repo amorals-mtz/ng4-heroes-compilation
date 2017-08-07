@@ -20,8 +20,8 @@ import { PageNotFoundComponent }        from './shared/not-found.component';
 
 import { DialogService }        from './shared/dialog.service';
 
-import { HeroMockService }      from './heroes/shared/hero-mock.service';
-import { HeroHttpService }      from './heroes/shared/hero-http.service';
+import { HeroMockPromiseService }       from './heroes/shared/hero-mock-promised.service';
+import { HeroHttpPromiseService }       from './heroes/shared/hero-http-promised.service';
 
 // Imports for loading & configuring the in-memory web API
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -52,8 +52,8 @@ import { InMemoryDataService }  from './core/in-memory-data.service';
   // The 'declarations' array contains a list of application components,
   // pipes, and directives that belong to the module.
   providers: [
-    HeroMockService,
-    HeroHttpService,
+    HeroMockPromiseService,
+    HeroHttpPromiseService,
     DialogService,
   ],
   bootstrap: [ AppComponent ]

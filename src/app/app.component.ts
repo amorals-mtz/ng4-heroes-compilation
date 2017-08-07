@@ -17,7 +17,7 @@ import { Component }  from '@angular/core';
   */
    // Multi-line template using ES2015's template literals.
   template: `
-    <h1>{{title}}</h1>
+    <h1>{{ title }}</h1>
     <!-- The <nav> tags don't do anything yet, but they're helpful for styling the links. -->
     <nav>
       <!-- The 'RouterLink' directive is bound to a string that tells the router

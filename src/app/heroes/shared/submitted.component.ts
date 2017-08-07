@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Hero }             from '../shared/models/hero.model';
-import { HeroMockService }  from '../shared/hero-mock.service';
-import { HeroHttpService }  from '../shared/hero-http.service';
+import { Hero }                    from './models/hero.model';
+import { HeroMockPromiseService }  from './hero-mock-promised.service';
+import { HeroHttpPromiseService }  from './hero-http-promised.service';
 
 @Component({
   selector: 'hero-submitted',
@@ -40,11 +40,11 @@ export class SubmittedComponent {
   /**
    * Constructor.
    *
-   * @param {HeroHttpService} heroHttpService - Injects a data service to get and save real data.
+   * @param {HeroHttpService} service - Injects a data service to get and save real data.
    */
   constructor(
-    /** private heroMockService: HeroMockService, */
-    private heroHttpService: HeroHttpService
+    /*private service: HeroMockPromiseService */
+    private service: HeroHttpPromiseService
   ) { }
 
 
@@ -56,7 +56,7 @@ export class SubmittedComponent {
    * Persists item changes.
    */
   save() {
-    this.heroHttpService.update(this.hero)
+    this.service.update(this.hero)
         .then(/*() => this.goBack()*/);    // navigates back to the previous view
   }
 }

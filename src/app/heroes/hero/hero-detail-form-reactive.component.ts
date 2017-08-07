@@ -8,9 +8,9 @@ import { ActivatedRoute, Params }  from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
 
-import { Hero }             from '../shared/models/hero.model';
-import { HeroMockService }         from '../shared/hero-mock.service';
-import { HeroHttpService }         from '../shared/hero-http.service';
+import { Hero }                    from '../shared/models/hero.model';
+import { HeroMockPromiseService }  from '../shared/hero-mock-promised.service';
+import { HeroHttpPromiseService }  from '../shared/hero-http-promised.service';
 import { forbiddenNameValidator }  from '../shared/forbidden-name.directive';
 
 @Component ({
@@ -45,14 +45,14 @@ export class HeroDetailFormReactiveComponent implements OnInit {
   /**
    * Constructor.
    *
-   * @param {HeroHttpService} heroHttpService - Injects a data service to get and save real data.
+   * @param {HeroHttpService} service - Injects a data service to get and save real data.
    */
   constructor(
-    // private heroMockService: HeroMockService,
-    private heroHttpService: HeroHttpService,
     private route: ActivatedRoute,
     private location: Location,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    /*private heroMockService: HeroMockPromiseService */
+    private service: HeroHttpPromiseService
   ) { }
 
   ngOnInit() {
@@ -63,8 +63,7 @@ export class HeroDetailFormReactiveComponent implements OnInit {
 
         // The item id is a number. Route parameters are always strings. So the route parameter value is converted
         // to a number with the JavaScript (+) operator.
-        .switchMap((params: Params) => this.heroHttpService.getHero(+params['id']))
-        /** .switchMap((params: Params) => this.heroMockService.getHero(+params['id'])) */
+        .switchMap((params: Params) => this.service.getHero(+params['id']))
         .subscribe(hero => {
           this.hero = hero;
           this.buildForm();    // Call the `buildForm` method here because that's when you'll have the hero data.

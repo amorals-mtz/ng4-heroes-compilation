@@ -12,9 +12,9 @@ import { slideInDownAnimation } from '../../animations';
 // rxjs-imports
 import 'rxjs/add/operator/switchMap';
 
-import { Hero }             from '../shared/models/hero.model';
-import { HeroMockService }  from '../shared/hero-mock.service';
-import { HeroHttpService }  from '../shared/hero-http.service';
+import { Hero }                    from '../shared/models/hero.model';
+import { HeroMockPromiseService }  from '../shared/hero-mock-promised.service';
+import { HeroHttpPromiseService }  from '../shared/hero-http-promised.service';
 
 @Component ({
   selector: 'hero-detail-form-template',
@@ -60,8 +60,8 @@ export class HeroDetailFormTemplateComponent implements OnInit, AfterViewChecked
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    /*private service: HeroMockService */
-    private service: HeroHttpService
+    /*private service: HeroMockPromiseService */
+    private service: HeroHttpPromiseService
   ) { }
 
   ngOnInit() {
